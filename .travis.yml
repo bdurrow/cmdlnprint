@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "stable"
+
+env:
+  global:
+    - DISPLAY=:99.0
+    - FIREFOX_BIN=./firefox/firefox
+    - JPM_FIREFOX_BINARY=./firefox/firefox
+
+addons:
+  apt:
+    packages:
+    - ca-certificates
+    - dbus-x11
+    - git
+    - make
+    - unzip
+    - xmlstarlet
+    - xvfb
+    - zip
+
+before_script:
+  - bash src/travis-ci/fetch-firefox.sh release-linux64-add-on-devel
+  - sh -e /etc/init.d/xvfb start
+
+script:
+  - bash src/travis-ci/run-test.sh
