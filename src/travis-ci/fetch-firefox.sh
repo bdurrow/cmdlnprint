@@ -11,4 +11,4 @@ LATEST=$(curl -s "$ROOT$BUILD_ROOT" | grep $BUILD_TYPE | grep -Po '<a href=".+">
 echo "Latest build located at $ROOT$BUILD_ROOT$LATEST"
 FILE=$(curl -s "$ROOT$BUILD_ROOT$LATEST/" | grep '.tar.' | grep -Po '<a href="\K[^"]*')
 echo "URL: $ROOT$FILE"
-wget -O "firefox-${BUILD_TYPE}.tar.bz2" "$ROOT$FILE" && tar xf "firefox-${BUILD_TYPE}.tar.bz2"
+curl --location -s "$ROOT$FILE" | tar xf -
