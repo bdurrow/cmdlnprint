@@ -25,4 +25,5 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - bash src/travis-ci/run-test.sh
+  - cd src; make
+  - bash src/travis-ci/run-tests.sh
