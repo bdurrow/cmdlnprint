@@ -11,4 +11,4 @@ LATEST=$(curl -s "$ROOT$BUILD_ROOT" | grep $BUILD_TYPE | sed -nEe 's/^.*<a href=
 echo "Latest build located at $ROOT$BUILD_ROOT$LATEST"
 FILE=$(curl -s "$ROOT$BUILD_ROOT$LATEST/" | sed -nEe 's,^.*<a href="([-_./a-zA-Z0-9]*\.tar\.bz2)\">.*$,\1,p')
 echo "URL: $ROOT$FILE"
-curl --location -s "$ROOT$FILE" | tar xf -
+curl --location -s "$ROOT$FILE" | tar xjf -
