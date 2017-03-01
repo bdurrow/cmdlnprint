@@ -18,8 +18,9 @@ mkdir -p ${FIREFOX_INSTALL_DIR}/extensions || true && \
 cp ${xpi} ${FIREFOX_INSTALL_DIR}/extensions/${xpi_uuid}.xpi; \
 done && \
 
-cd ${TRAVIS_BUILD_DIR}/docker/root/usr/lib/firefox/
-tar cf - ./ | tar -C ${FIREFOX_INSTALL_DIR} xf -
+set -x
+echo "Modifying firefox defaults to suit our needs into ${FIREFOX_INSTALL_DIR}..."
+tar --directory ${TRAVIS_BUILD_DIR}/docker/root/usr/lib/firefox/ cf - ./ | tar --directory ${FIREFOX_INSTALL_DIR} xf -
 
 sh -e /etc/init.d/xvfb start
 ${FIREFOX_INSTALL_DIR}/firefox -foreground -no-remote -print https://google.com -print-mode pdf -print-file /tmp/test1.pdf
