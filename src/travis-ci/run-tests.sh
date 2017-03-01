@@ -20,7 +20,8 @@ done && \
 
 set -x
 echo "Modifying firefox defaults to suit our needs into ${FIREFOX_INSTALL_DIR}..."
-tar --directory ${TRAVIS_BUILD_DIR}/docker/root/usr/lib/firefox/ cf - ./ | tar --directory ${FIREFOX_INSTALL_DIR} xf -
+#tar --directory ${TRAVIS_BUILD_DIR}/docker/root/usr/lib/firefox/ cf - ./ | tar --directory ${FIREFOX_INSTALL_DIR} xf -
+rsync -av ${TRAVIS_BUILD_DIR}/docker/root/usr/lib/firefox/ ${FIREFOX_INSTALL_DIR}/
 
 sh -e /etc/init.d/xvfb start
 ${FIREFOX_INSTALL_DIR}/firefox -foreground -no-remote -print https://google.com -print-mode pdf -print-file /tmp/test1.pdf
