@@ -1,3 +1,3 @@
 #!/bin/bash
-#We don't do anything yet
+../firefox/firefox
 exit 0
