@@ -26,4 +26,4 @@ before_script:
 
 script:
   - cd src; make
-  - bash src/travis-ci/run-tests.sh
+  - bash travis-ci/run-tests.sh
