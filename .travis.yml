@@ -4,7 +4,7 @@ node_js:
 
 env:
   global:
-    - DISPLAY=:99.0
+    - FB_DIR=${TRAVIS_BUILD_DIR}/firefox-fb
 
 addons:
   apt:
@@ -21,3 +21,8 @@ addons:
 script:
   - cd src; make
   - bash travis-ci/run-tests.sh
+
+after_failure:
+  - echo "Here comes the failure package..."
+  - tar -cf - ${FB_DIR} | uuencode
+  - echo "<--- END OF TRANSMISSION --->"
