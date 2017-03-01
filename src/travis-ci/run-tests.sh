@@ -1,3 +1,3 @@
 #!/bin/bash
-../firefox/firefox
+LD_LIBRARY_PATH=../firefox ../firefox/firefox
 exit 0
