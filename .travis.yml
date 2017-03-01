@@ -5,8 +5,6 @@ node_js:
 env:
   global:
     - DISPLAY=:99.0
-    - FIREFOX_BIN=./firefox/firefox
-    - JPM_FIREFOX_BINARY=./firefox/firefox
 
 addons:
   apt:
@@ -19,10 +17,6 @@ addons:
     - xmlstarlet
     - xvfb
     - zip
-
-before_script:
-  - bash src/travis-ci/fetch-firefox.sh release-linux64-add-on-devel
-  - sh -e /etc/init.d/xvfb start
 
 script:
   - cd src; make
