@@ -20,7 +20,7 @@ addons:
 
 script:
   - cd src; make
-  - bash travis-ci/run-tests.sh
+  - bash test/run-tests.sh
 
 after_failure:
   - echo "Here comes the failure package..."
