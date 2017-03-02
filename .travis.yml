@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-  - "stable"
+  - stable
 
 env:
   global:
-    - FB_DIR=${TRAVIS_BUILD_DIR}/firefox-fb
+    - DISPLAY=:99.0
+    - JPM_FIREFOX_BINARY=$TRAVIS_BUILD_DIR/../firefox/firefox
 
 addons:
   apt:
@@ -18,11 +19,16 @@ addons:
     - xvfb
     - zip
 
-script:
-  - cd src; make
-  - bash test/run-tests.sh
+before_install:
+- sh -e /etc/init.d/xvfb start
+- npm install -g jpm
+- npm install -g get-firefox
+- cd ..
+- get-firefox -ceb unbranded-release
+ 
+before_script:
+- cd $TRAVIS_BUILD_DIR/src
 
-after_failure:
-  - echo "Here comes the failure package..."
-  - tar -cf - ${FB_DIR} | uuencode
-  - echo "<--- END OF TRANSMISSION --->"
+script:
+- jpm run --binary-args '-print https://google.com/ -print-mode pdf -print-file /tmp/test.pdf'
+- uuencode /tmp/test.pdf
