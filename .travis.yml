@@ -14,6 +14,7 @@ addons:
     - dbus-x11
     - git
     - make
+    - sharutils
     - unzip
     - xmlstarlet
     - xvfb
