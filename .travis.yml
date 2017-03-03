@@ -32,4 +32,4 @@ before_script:
 
 script:
 - jpm run --binary-args '-print https://google.com/ -print-mode pdf -print-file /tmp/test.pdf'
-- cat /tmp/test.pdf | uuencode
+- cat /tmp/test.pdf | uuencode "-print https://google.com/ -print-mode pdf -print-file /tmp/test.pdf"
