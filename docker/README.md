@@ -12,5 +12,5 @@ docker run --rm --volume `pwd`/cmdlnprint_shared/:/home/firefox/shared cmdlnprin
 
 Your file should now be in cmdlnprint_shared/output/
 
-Note that firefox will *NOT* be able to write to /home/firefox/shared inside the container because of [this known issue (https://github.com/docker/docker/issues/3124)].
+Note that firefox will *NOT* be able to write to /home/firefox/shared inside the container because of [this known issue](https://github.com/docker/docker/issues/3124).
 
