@@ -20,10 +20,15 @@ FB_PIXEL_DEPTH=${FB_PIXEL_DEPTH-24}
 if [[ -n ${DISPLAY} ]]; then
   echo "DISPLAY already set to ${DISPLAY}.  Skipping Xvfb setup."
 else
-  echo "Setting up Xvfb in ${FB_DIR}"
+  if ! [[ -e ${FB_DIR} ]]; then
+    echo "Making ${FB_DIR} for Xvfb to use..."
+    mkdir -p ${FB_DIR}
+  fi
+  echo "Setting up Xvfb in ${FB_DIR}..."
   Xvfb :1 -screen 0 ${FB_RESOLUTION}x${FB_PIXEL_DEPTH} -fbdir ${FB_DIR} 2>&1 | \
     egrep -v '^(_XSERVTransmkdir.*will not be created\.|Xlib: extension "RANDR" missing on display .*\.)$' &
   export DISPLAY=":1"
 fi
 
+echo "Calling ${@}..."
 exec "$@"

@@ -8,8 +8,8 @@ ENV RUNUSER firefox
 ARG FIREFOX_VERSION=51
 
 ARG FIREFOX_INSTALL_DIR=/usr/lib/firefox-addons/
-ARG GIT_REPO=https://github.com/bdurrow/cmdlnprint.git
-ARG GIT_BRANCH=travis-ci
+ARG GIT_REPO=https://github.com/eclipxe13/cmdlnprint.git
+ARG GIT_BRANCH=master
 
 ARG APT_PACKAGES_RUN="\
     ca-certificates \
